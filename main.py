@@ -68,6 +68,12 @@ class ImageProcessingApp:
         self.btn_rotate = tk.Button(self.btn_row, text="Rotate 90°", command=self.rotate_image, state=tk.DISABLED)
         self.btn_rotate.pack(side=tk.LEFT, padx=5, pady=5)
 
+        self.btn_fliph = tk.Button(self.btn_row, text="Flip H.", command=self.fliph_image, state=tk.DISABLED)
+        self.btn_fliph.pack(side=tk.LEFT, padx=5, pady=5)
+
+        self.btn_flipv = tk.Button(self.btn_row, text="Flip V.", command=self.flipv_image, state=tk.DISABLED)
+        self.btn_flipv.pack(side=tk.LEFT, padx=5, pady=5)
+
         self.btn_resize = tk.Button(self.btn_row, text="Resize", command=self.open_resize_window, state=tk.DISABLED)
         self.btn_resize.pack(side=tk.LEFT, padx=5, pady=5)
 
@@ -217,6 +223,8 @@ class ImageProcessingApp:
         self.btn_hist_color.config(state=state)
         self.btn_hist_gray.config(state=state)
         self.btn_rotate.config(state=state)
+        self.btn_fliph.config(state=state)
+        self.btn_flipv.config(state=state)
         self.btn_resize.config(state=state)
         self.btn_reset.config(state=state)
         self.btn_translate.config(state=state)
@@ -227,6 +235,18 @@ class ImageProcessingApp:
         if self.image is not None:
             self.original_image = cv2.rotate(self.original_image, cv2.ROTATE_90_CLOCKWISE)
             self.image = self.processed_image = cv2.rotate(self.processed_image, cv2.ROTATE_90_CLOCKWISE)
+            self.refresh_image()
+    
+    def fliph_image(self):
+        if self.image is not None:
+            self.original_image = cv2.flip(self.original_image, flipCode=1)
+            self.image = self.processed_image = cv2.flip(self.processed_image, flipCode=1)
+            self.refresh_image()
+    
+    def flipv_image(self):
+        if self.image is not None:
+            self.original_image = cv2.flip(self.original_image, flipCode=0)
+            self.image = self.processed_image = cv2.flip(self.processed_image, flipCode=0)
             self.refresh_image()
     
     def resize_image(self, new_height, new_width):
