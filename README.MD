@@ -1,6 +1,7 @@
 # Combo Image Editor
 This is a Python program that applies some simple effects to images, including:
 - 90-Degree Image Rotation.
+- Image Flipping (Horizontally and Vertically)
 - Image Resizing.
 - Image Translation.
 - Changing Color Schemes (Negative, Grayscale, Binary, HSV, LAB, etc...).
